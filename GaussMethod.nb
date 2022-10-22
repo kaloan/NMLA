@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[     25955,        631]
-NotebookOptionsPosition[     25344,        614]
-NotebookOutlinePosition[     25708,        630]
-CellTagsIndexPosition[     25665,        627]
+NotebookDataLength[     27720,        667]
+NotebookOptionsPosition[     26791,        645]
+NotebookOutlinePosition[     27155,        661]
+CellTagsIndexPosition[     27112,        658]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -327,7 +327,7 @@ Cell[BoxData[
             RowBox[{"-", "1"}]}], "]"}]}], ";", "\[IndentingNewLine]", 
          RowBox[{"If", "[", 
           RowBox[{
-           RowBox[{"maxPivotRowIndex", ">", "k"}], ",", 
+           RowBox[{"maxPivotRowIndex", ">", "k"}], ",", "\[IndentingNewLine]", 
            RowBox[{
             RowBox[{
              RowBox[{"{", 
@@ -345,8 +345,26 @@ Cell[BoxData[
                 "\[RightDoubleBracket]"}], ",", 
                RowBox[{
                "Aiter", "\[LeftDoubleBracket]", "k", 
-                "\[RightDoubleBracket]"}]}], "}"}]}], ";"}]}], "]"}], ";", 
-         "\[IndentingNewLine]", 
+                "\[RightDoubleBracket]"}]}], "}"}]}], ";", 
+            "\[IndentingNewLine]", 
+            RowBox[{
+             RowBox[{"{", 
+              RowBox[{
+               RowBox[{
+               "biter", "\[LeftDoubleBracket]", "k", 
+                "\[RightDoubleBracket]"}], ",", " ", 
+               RowBox[{
+               "biter", "\[LeftDoubleBracket]", "maxPivotRowIndex", 
+                "\[RightDoubleBracket]"}]}], "}"}], "=", 
+             RowBox[{"{", 
+              RowBox[{
+               RowBox[{
+               "biter", "\[LeftDoubleBracket]", "maxPivotRowIndex", 
+                "\[RightDoubleBracket]"}], ",", " ", 
+               RowBox[{
+               "biter", "\[LeftDoubleBracket]", "k", 
+                "\[RightDoubleBracket]"}]}], "}"}]}], ";"}]}], 
+          "\[IndentingNewLine]", "]"}], ";", "\[IndentingNewLine]", 
          RowBox[{
           RowBox[{
           "biter", "\[LeftDoubleBracket]", "k", "\[RightDoubleBracket]"}], 
@@ -451,15 +469,14 @@ Cell[BoxData[
        ";", "\[IndentingNewLine]", "\[IndentingNewLine]", "biter"}], 
      "\[IndentingNewLine]", ")"}]}]}]}]], "Input",
  CellChangeTimes->CompressedData["
-1:eJxTTMoPSmViYGAQBmIQbfNkiWvpvTeOV5d5FIHo+uUrq0G0MFNCC4i2ylg6
+1:eJxTTMoPSmViYGAQAWIQbfNkiWvpvTeOV5d5FIHo+uUrq0G0MFNCC4i2ylg6
 EUTX2K8E05Oq+GaD6B6f22A6ortuIYi+wxOyHkRXJBtvAdEJZ1rA9AG560dB
 9Bn23mMg+u68mFMgeseNyHNgceNDl0B0svIxML1v4/prIDr/r8U7ED3vjZh+
 GZD+s74HTCu/XBqy7D7Q/nLDMBAdut8iH0Q7Cd0sBdE5379Vg+h/uontIPpN
 XOpEEK174O0CEF1hsWQfiPZd5HgJRPdeWn8LRK/afBZM2+UmsCwH0hbNUqwg
-+m3ISe0VQDrJYpE+iAYAPIKzxw==
++m3ISe0VQDrJYpE+iBaL3LPtAsi8V/kHQTQAyfW9qA==
   "],
- CellLabel->
-  "In[436]:=",ExpressionUUID->"31ef2b28-8eaf-4e2b-ae54-34cb707bea0f"],
+ CellLabel->"In[20]:=",ExpressionUUID->"31ef2b28-8eaf-4e2b-ae54-34cb707bea0f"],
 
 Cell[BoxData[
  RowBox[{
@@ -503,8 +520,8 @@ Cell[BoxData[
    3.8753561534581947`*^9, 3.875356197677384*^9}, {3.875356373332204*^9, 
    3.875356376925613*^9}, {3.875356445272585*^9, 3.875356513413617*^9}, {
    3.8753568368954678`*^9, 3.875356921193074*^9}, {3.8753570847757893`*^9, 
-   3.875357085838174*^9}},ExpressionUUID->"4a87cd47-4ce5-4798-b02f-\
-0753ac52a5ef"],
+   3.875357085838174*^9}},
+ CellLabel->"In[23]:=",ExpressionUUID->"4a87cd47-4ce5-4798-b02f-0753ac52a5ef"],
 
 Cell[BoxData[
  RowBox[{
@@ -568,6 +585,8 @@ Cell[BoxData[
  CellLabel->
   "In[434]:=",ExpressionUUID->"7df78964-b95f-46fe-83eb-e3ef5287ec65"],
 
+Cell[CellGroupData[{
+
 Cell[BoxData[
  RowBox[{
   RowBox[{"(*", " ", 
@@ -608,9 +627,21 @@ Cell[BoxData[
    3.8747300674724865`*^9, 3.8747301594498663`*^9}, {3.8747302503877764`*^9, 
    3.8747302846449385`*^9}, 3.874730397491468*^9, {3.8753533359365377`*^9, 
    3.875353418169961*^9}, 3.875353477006345*^9, {3.875354318304843*^9, 
-   3.875354376869341*^9}, {3.875355547434898*^9, 
-   3.8753555621086597`*^9}},ExpressionUUID->"5a27a873-29b1-402d-b1bb-\
-ba5d567926aa"]
+   3.875354376869341*^9}, {3.875355547434898*^9, 3.8753555621086597`*^9}},
+ CellLabel->"In[10]:=",ExpressionUUID->"5a27a873-29b1-402d-b1bb-ba5d567926aa"],
+
+Cell[BoxData["1.678479999999999972`4."], "Output",
+ CellChangeTimes->{3.875415112862936*^9, 3.8754151553715773`*^9},
+ CellLabel->"Out[13]=",ExpressionUUID->"cf894dd1-8293-49d7-b78a-4d17a0ec69ed"],
+
+Cell[BoxData["1.345109499999999958`3."], "Output",
+ CellChangeTimes->{3.875415112862936*^9, 3.8754151621074*^9},
+ CellLabel->"Out[14]=",ExpressionUUID->"4cc9339f-bc8b-4ebd-bdc1-118f78cf9899"],
+
+Cell[BoxData["4.3141180000000005634`3."], "Output",
+ CellChangeTimes->{3.875415112862936*^9, 3.875415183675393*^9},
+ CellLabel->"Out[15]=",ExpressionUUID->"ed8400aa-c2de-4f2b-b91e-c6226792f719"]
+}, Open  ]]
 },
 WindowSize->{1920, 1012},
 WindowMargins->{{0, Automatic}, {0, Automatic}},
@@ -629,10 +660,15 @@ CellTagsIndex->{}
 *)
 (*NotebookFileOutline
 Notebook[{
-Cell[558, 20, 18207, 441, 3200, "Input",ExpressionUUID->"31ef2b28-8eaf-4e2b-ae54-34cb707bea0f"],
-Cell[18768, 463, 2026, 43, 388, "Input",ExpressionUUID->"4a87cd47-4ce5-4798-b02f-0753ac52a5ef"],
-Cell[20797, 508, 2790, 60, 490, "Input",ExpressionUUID->"7df78964-b95f-46fe-83eb-e3ef5287ec65"],
-Cell[23590, 570, 1750, 42, 252, "Input",ExpressionUUID->"5a27a873-29b1-402d-b1bb-ba5d567926aa"]
+Cell[558, 20, 18991, 458, 3302, "Input",ExpressionUUID->"31ef2b28-8eaf-4e2b-ae54-34cb707bea0f"],
+Cell[19552, 480, 2048, 43, 388, "Input",ExpressionUUID->"4a87cd47-4ce5-4798-b02f-0753ac52a5ef"],
+Cell[21603, 525, 2790, 60, 490, "Input",ExpressionUUID->"7df78964-b95f-46fe-83eb-e3ef5287ec65"],
+Cell[CellGroupData[{
+Cell[24418, 589, 1768, 41, 252, "Input",ExpressionUUID->"5a27a873-29b1-402d-b1bb-ba5d567926aa"],
+Cell[26189, 632, 195, 2, 53, "Output",ExpressionUUID->"cf894dd1-8293-49d7-b78a-4d17a0ec69ed"],
+Cell[26387, 636, 191, 2, 53, "Output",ExpressionUUID->"4cc9339f-bc8b-4ebd-bdc1-118f78cf9899"],
+Cell[26581, 640, 194, 2, 53, "Output",ExpressionUUID->"ed8400aa-c2de-4f2b-b91e-c6226792f719"]
+}, Open  ]]
 }
 ]
 *)
