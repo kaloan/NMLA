@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[      9247,        240]
-NotebookOptionsPosition[      8517,        220]
-NotebookOutlinePosition[      8880,        236]
-CellTagsIndexPosition[      8837,        233]
+NotebookDataLength[      9651,        250]
+NotebookOptionsPosition[      8922,        230]
+NotebookOutlinePosition[      9285,        246]
+CellTagsIndexPosition[      9242,        243]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -23,10 +23,78 @@ Cell[BoxData[{
   RowBox[{
    RowBox[{"Jacobi", "[", 
     RowBox[{"A_", ",", "b_", ",", "\[Epsilon]_", ",", "iterMax_"}], "]"}], ":=", 
-   RowBox[{"(", "\[IndentingNewLine]", 
+   RowBox[{"Module", "[", "\[IndentingNewLine]", 
     RowBox[{
-     RowBox[{"n", "=", 
-      RowBox[{"Length", "@", "b"}]}], ";", "\[IndentingNewLine]", 
+     RowBox[{"{", 
+      RowBox[{"k", ",", 
+       RowBox[{"n", "=", 
+        RowBox[{"Length", "@", "b"}]}], ",", 
+       RowBox[{"iter", "=", "0"}], ",", " ", "sol", ",", " ", "solNext"}], 
+      "}"}], ",", "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{"sol", "=", 
+       RowBox[{"ConstantArray", "[", 
+        RowBox[{"0", ",", "n"}], "]"}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{"solNext", "=", 
+       RowBox[{"ConstantArray", "[", 
+        RowBox[{"\[Epsilon]", ",", "n"}], "]"}]}], ";", "\[IndentingNewLine]",
+       "\[IndentingNewLine]", 
+      RowBox[{"While", "[", 
+       RowBox[{
+        RowBox[{
+         RowBox[{
+          RowBox[{"Norm", "[", 
+           RowBox[{"solNext", "-", "sol"}], "]"}], "\[GreaterEqual]", 
+          "\[Epsilon]"}], "&&", 
+         RowBox[{"iter", "<", "iterMax"}]}], ",", "\[IndentingNewLine]", 
+        RowBox[{
+         RowBox[{"iter", "++"}], ";", "\[IndentingNewLine]", 
+         RowBox[{"sol", "=", "solNext"}], ";", "\[IndentingNewLine]", 
+         RowBox[{"For", "[", 
+          RowBox[{
+           RowBox[{"k", "=", "1"}], ",", 
+           RowBox[{"k", "\[LessEqual]", "n"}], ",", 
+           RowBox[{"k", "++"}], ",", "\[IndentingNewLine]", 
+           RowBox[{
+            RowBox[{
+             RowBox[{
+             "solNext", "\[LeftDoubleBracket]", "k", 
+              "\[RightDoubleBracket]"}], "=", 
+             FractionBox[
+              RowBox[{
+               RowBox[{"-", 
+                RowBox[{
+                 RowBox[{
+                 "A", "\[LeftDoubleBracket]", "k", "\[RightDoubleBracket]"}], 
+                 ".", "sol"}]}], "+", 
+               RowBox[{
+               "b", "\[LeftDoubleBracket]", "k", "\[RightDoubleBracket]"}]}], 
+              
+              RowBox[{"A", "\[LeftDoubleBracket]", 
+               RowBox[{"k", ",", "k"}], "\[RightDoubleBracket]"}]]}], ";", 
+            "\[IndentingNewLine]", 
+            RowBox[{
+             RowBox[{
+             "solNext", "\[LeftDoubleBracket]", "k", 
+              "\[RightDoubleBracket]"}], "+=", 
+             RowBox[{
+             "sol", "\[LeftDoubleBracket]", "k", "\[RightDoubleBracket]"}]}], 
+            ";"}]}], "\[IndentingNewLine]", "]"}], ";"}]}], 
+       "\[IndentingNewLine]", "]"}], ";", "\[IndentingNewLine]", 
+      "\[IndentingNewLine]", "solNext"}]}], "\[IndentingNewLine]", "]"}]}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"Jacobi2", "[", 
+   RowBox[{"A_", ",", "b_", ",", "\[Epsilon]_", ",", "iterMax_"}], "]"}], ":=", 
+  RowBox[{"Module", "[", "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"k", ",", 
+      RowBox[{"n", "=", 
+       RowBox[{"Length", "@", "b"}]}], ",", 
+      RowBox[{"iter", "=", "0"}], ",", " ", "sol", ",", " ", "solNext", ",", 
+      "diagA", ",", "F", ",", "invDiagA"}], "}"}], ",", "\[IndentingNewLine]", 
+    RowBox[{
      RowBox[{"sol", "=", 
       RowBox[{"ConstantArray", "[", 
        RowBox[{"0", ",", "n"}], "]"}]}], ";", "\[IndentingNewLine]", 
@@ -34,8 +102,18 @@ Cell[BoxData[{
       RowBox[{"ConstantArray", "[", 
        RowBox[{"\[Epsilon]", ",", "n"}], "]"}]}], ";", "\[IndentingNewLine]", 
      
-     RowBox[{"iter", "=", "0"}], ";", "\[IndentingNewLine]", 
+     RowBox[{"diagA", "=", 
+      RowBox[{"Diagonal", "@", "A"}]}], ";", "\[IndentingNewLine]", 
+     RowBox[{"F", "=", 
+      RowBox[{"A", "-", 
+       RowBox[{"DiagonalMatrix", "@", "diagA"}]}]}], ";", 
      "\[IndentingNewLine]", 
+     RowBox[{"invDiagA", "=", 
+      RowBox[{
+       RowBox[{
+        SuperscriptBox["#", 
+         RowBox[{"-", "1"}]], "&"}], "/@", "diagA"}]}], ";", 
+     "\[IndentingNewLine]", "\[IndentingNewLine]", 
      RowBox[{"While", "[", 
       RowBox[{
        RowBox[{
@@ -47,85 +125,16 @@ Cell[BoxData[{
        RowBox[{
         RowBox[{"iter", "++"}], ";", "\[IndentingNewLine]", 
         RowBox[{"sol", "=", "solNext"}], ";", "\[IndentingNewLine]", 
-        RowBox[{"For", "[", 
-         RowBox[{
-          RowBox[{"k", "=", "1"}], ",", 
-          RowBox[{"k", "\[LessEqual]", "n"}], ",", 
-          RowBox[{"k", "++"}], ",", "\[IndentingNewLine]", 
-          RowBox[{
-           RowBox[{
-            RowBox[{
-            "solNext", "\[LeftDoubleBracket]", "k", "\[RightDoubleBracket]"}],
-             "=", 
-            FractionBox[
-             RowBox[{
-              RowBox[{"-", 
-               RowBox[{
-                RowBox[{
-                "A", "\[LeftDoubleBracket]", "k", "\[RightDoubleBracket]"}], 
-                ".", "sol"}]}], "+", 
-              RowBox[{
-              "b", "\[LeftDoubleBracket]", "k", "\[RightDoubleBracket]"}]}], 
-             RowBox[{"A", "\[LeftDoubleBracket]", 
-              RowBox[{"k", ",", "k"}], "\[RightDoubleBracket]"}]]}], ";", 
-           "\[IndentingNewLine]", 
-           RowBox[{
-            RowBox[{
-            "solNext", "\[LeftDoubleBracket]", "k", "\[RightDoubleBracket]"}],
-             "+=", 
-            RowBox[{
-            "sol", "\[LeftDoubleBracket]", "k", "\[RightDoubleBracket]"}]}], 
-           ";"}]}], "\[IndentingNewLine]", "]"}], ";"}]}], 
+        RowBox[{"solNext", "=", 
+         RowBox[{"MapThread", "[", 
+          RowBox[{"Times", ",", 
+           RowBox[{"{", 
+            RowBox[{"invDiagA", ",", 
+             RowBox[{"b", "-", 
+              RowBox[{"F", ".", "sol"}]}]}], "}"}]}], "]"}]}], ";"}]}], 
       "\[IndentingNewLine]", "]"}], ";", "\[IndentingNewLine]", 
-     "\[IndentingNewLine]", "solNext"}], "\[IndentingNewLine]", ")"}]}], 
-  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
- RowBox[{
-  RowBox[{"Jacobi2", "[", 
-   RowBox[{"A_", ",", "b_", ",", "\[Epsilon]_", ",", "iterMax_"}], "]"}], ":=", 
-  RowBox[{"(", "\[IndentingNewLine]", 
-   RowBox[{
-    RowBox[{"n", "=", 
-     RowBox[{"Length", "@", "b"}]}], ";", "\[IndentingNewLine]", 
-    RowBox[{"sol", "=", 
-     RowBox[{"ConstantArray", "[", 
-      RowBox[{"0", ",", "n"}], "]"}]}], ";", "\[IndentingNewLine]", 
-    RowBox[{"solNext", "=", 
-     RowBox[{"ConstantArray", "[", 
-      RowBox[{"\[Epsilon]", ",", "n"}], "]"}]}], ";", "\[IndentingNewLine]", 
-    RowBox[{"iter", "=", "0"}], ";", "\[IndentingNewLine]", 
-    RowBox[{"diagA", "=", 
-     RowBox[{"Diagonal", "@", "A"}]}], ";", "\[IndentingNewLine]", 
-    RowBox[{"F", "=", 
-     RowBox[{"A", "-", 
-      RowBox[{"DiagonalMatrix", "@", "diagA"}]}]}], ";", 
-    "\[IndentingNewLine]", 
-    RowBox[{"invDiagA", "=", 
-     RowBox[{
-      RowBox[{
-       SuperscriptBox["#", 
-        RowBox[{"-", "1"}]], "&"}], "/@", "diagA"}]}], ";", 
-    "\[IndentingNewLine]", 
-    RowBox[{"While", "[", 
-     RowBox[{
-      RowBox[{
-       RowBox[{
-        RowBox[{"Norm", "[", 
-         RowBox[{"solNext", "-", "sol"}], "]"}], "\[GreaterEqual]", 
-        "\[Epsilon]"}], "&&", 
-       RowBox[{"iter", "<", "iterMax"}]}], ",", "\[IndentingNewLine]", 
-      RowBox[{
-       RowBox[{"iter", "++"}], ";", "\[IndentingNewLine]", 
-       RowBox[{"sol", "=", "solNext"}], ";", "\[IndentingNewLine]", 
-       RowBox[{"solNext", "=", 
-        RowBox[{"MapThread", "[", 
-         RowBox[{"Times", ",", 
-          RowBox[{"{", 
-           RowBox[{"invDiagA", ",", 
-            RowBox[{"b", "-", 
-             RowBox[{"F", ".", "sol"}]}]}], "}"}]}], "]"}]}], ";"}]}], 
-     "\[IndentingNewLine]", "]"}], ";", "\[IndentingNewLine]", 
-    "\[IndentingNewLine]", "solNext"}], "\[IndentingNewLine]", 
-   ")"}]}]}], "Input",
+     "\[IndentingNewLine]", "solNext"}]}], "\[IndentingNewLine]", 
+   "]"}]}]}], "Input",
  CellChangeTimes->{{3.877080627408531*^9, 3.8770806407692833`*^9}, {
   3.8770809773880253`*^9, 3.877080981732538*^9}, {3.8770810470941772`*^9, 
   3.877081126534622*^9}, {3.8770811714768744`*^9, 3.877081266313312*^9}, {
@@ -136,9 +145,10 @@ Cell[BoxData[{
   3.877082288628879*^9, 3.8770822976141453`*^9}, {3.87708259947587*^9, 
   3.87708261905519*^9}, {3.877082731588065*^9, 3.877082736163967*^9}, {
   3.877082799694488*^9, 3.877082804381135*^9}, {3.877082882166379*^9, 
-  3.877082899499696*^9}, {3.877083060633016*^9, 3.877083061005966*^9}},
- CellLabel->
-  "In[123]:=",ExpressionUUID->"dd39fdc1-39c5-4cf8-a7d2-fad8db84b572"],
+  3.877082899499696*^9}, {3.877083060633016*^9, 3.877083061005966*^9}, {
+  3.879285842791507*^9, 
+  3.879285963577426*^9}},ExpressionUUID->"dd39fdc1-39c5-4cf8-a7d2-\
+fad8db84b572"],
 
 Cell[CellGroupData[{
 
@@ -235,12 +245,12 @@ CellTagsIndex->{}
 *)
 (*NotebookFileOutline
 Notebook[{
-Cell[558, 20, 5151, 120, 1721, "Input",ExpressionUUID->"dd39fdc1-39c5-4cf8-a7d2-fad8db84b572"],
+Cell[558, 20, 5556, 130, 1611, "Input",ExpressionUUID->"dd39fdc1-39c5-4cf8-a7d2-fad8db84b572"],
 Cell[CellGroupData[{
-Cell[5734, 144, 1497, 40, 531, "Input",ExpressionUUID->"4a0fc6c8-7210-45ba-9681-4bd05f5bb469"],
-Cell[7234, 186, 422, 9, 98, "Output",ExpressionUUID->"d855cc64-58e1-4473-9054-cf64580ced6a"],
-Cell[7659, 197, 416, 9, 98, "Output",ExpressionUUID->"06cc4917-5e08-4d63-aab1-34db5b9cca26"],
-Cell[8078, 208, 423, 9, 131, "Output",ExpressionUUID->"731e354a-a16e-4cac-b286-7388ee9391ab"]
+Cell[6139, 154, 1497, 40, 502, "Input",ExpressionUUID->"4a0fc6c8-7210-45ba-9681-4bd05f5bb469"],
+Cell[7639, 196, 422, 9, 98, "Output",ExpressionUUID->"d855cc64-58e1-4473-9054-cf64580ced6a"],
+Cell[8064, 207, 416, 9, 98, "Output",ExpressionUUID->"06cc4917-5e08-4d63-aab1-34db5b9cca26"],
+Cell[8483, 218, 423, 9, 98, "Output",ExpressionUUID->"731e354a-a16e-4cac-b286-7388ee9391ab"]
 }, Open  ]]
 }
 ]
